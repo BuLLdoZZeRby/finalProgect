@@ -75,7 +75,7 @@ def check_agency(phone):
     database.cur7.execute(f"SELECT COUNT(*)  FROM flat WHERE phone = '{phone}' ;")
     count_phone = database.cur7.fetchone()
     if count_phone[0] > 1:
-        return f" Возможно, объявление от агенства!!! В базе {count_phone[0]} объявлений с этим номером телефона"
+        return f" Возможно, объявление от агентства!!! В базе {count_phone[0]} объявлений с этим номером телефона"
     else:
         return ' '
 

@@ -10,17 +10,17 @@ rooms = [1, 2, 3]
 for room in rooms:
     while True:
         try:
-            respons = requests.get(f'https://domovita.by/minsk/{room}-room-flats/rent?page={i}&order=price', headers=headers)
+            respons = requests.get(f'https://domovita.by/minsk/{room}-room-flats/rent?page={i}&order=price',
+                                   headers=headers
+                                   )
             print(respons.status_code)
             if respons.status_code == 404:
                 break
             soup = BeautifulSoup(respons.text, 'lxml')
             a = soup.find_all('a', class_="mb-5 title title--listing")
             i += 1
-
         except:
             break
-
         for x in a:
             urls.append((x.get("href"), room))
             print(x.get("href"))

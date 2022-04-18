@@ -3,6 +3,7 @@ from telebot import types
 import dbmanage
 import temp
 
+
 token = temp.bottoken
 bot = telebot.TeleBot(token)
 link: str
@@ -46,7 +47,6 @@ def button_message(message):
     markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
     but9 = types.KeyboardButton("/start")
     markup2.add(but9)
-
 
     def choose_flat(room):
         global idflat
@@ -94,9 +94,11 @@ def button_message(message):
             bot.send_message(user_id, f'{messflats[0]}\n{messflats[1]}\n{messflats[2]}\n{messflats[3]}',
                              reply_markup=markup1)
     elif message.text == "Удалить":
-        print(idflat)
         dbmanage.delete_flat(user_id, idflat)
         bot.send_message(user_id, 'Удалено', reply_markup=markup1)
+
+    elif "drop" in message.text.lower() or "delete" in message.text.lower():
+        bot.send_message(user_id, 'Начинаю форматирование диска С...')
 
 
 bot.infinity_polling()
